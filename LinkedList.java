@@ -65,16 +65,27 @@ public class LinkedList<T> {
     return null;
   }
 
+  // returns the last node of the list 
+  private LLNode<T> getLast() {
+    for (LLNode<T> last = getFront(); last != null && last.getNext() != null; last = last.getNext()) {
+    }
+    return last;
+  }
+	
   /**
    * combining two linked lists
    * 
    */
   public void append(LinkedList<T> input) {
-	  
-	  LinkedList<T> temp = this.frontNode ;
-		if(input.getElement()) {
-			
-		}
-	}
-  
+    LLNode>T> last = getLast();
+    if (last == null) {
+      setFront(input.getFront());
+    }
+    else {
+      last.setNext(input.getFront());
+    }
+    // make input list empty
+    input.setFront(null);
+  }
+ 
 }
