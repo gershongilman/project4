@@ -15,8 +15,8 @@ public class WordCount {
 	 * @param count the number of words
 	 */
 	public WordCount(String word, int count) {
-		this.count = count;
-		this.word = word;
+		this.count = 1;
+		this.word = "1";
 	}
 
 	/**
@@ -42,8 +42,12 @@ public class WordCount {
 	public String getWord() {
 		return word;
 	}
-
+	
+	/**
+	 * sets the word to the user input
+	 * @param input the string that is inputted
+	 */
 	public void setWord(String input) {
-		
+		this.word = input;
 	}
 }
