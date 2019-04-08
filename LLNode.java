@@ -42,12 +42,24 @@ public class LLNode<T> {
 	public void setNext(LLNode<T> next) {
 		this.next = next;
 	}
-	
-	/** 
-	 * @param LinkedList 
-	 */
-	public void append() {
-		
-	}
-
+	  /**
+	   * Returns the length after this node to the end of the list. 
+	   * An example of structural recursion
+	   * @return the length of the list, after this node and not including this node
+	   */
+	 public int lengthFromHere() {
+	    if (getNext() == null)                    // this is the end of the list so
+	      return 0;                               //   there are no more nodes
+	    else                                      // this is not the end of the list so
+	      return 1 + getNext().lengthFromHere();  //   the length is 1 more than next's length
+	 }
+	 /**
+	   * Insert a new node after this node in the list.
+	   * @param element  the value to store in the new node
+	   */
+	  public void insertAfter(T element) {
+	      LLNode <T> save = getNext();
+	      LLNode <T> newNode = new LLNode<T>(element, save);
+	      this.setNext(newNode);      
+	  }
 }
