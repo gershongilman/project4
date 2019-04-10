@@ -14,9 +14,9 @@ public class WordCount {
 	 * @param input the string that we will count
 	 * @param count the number of words
 	 */
-	public WordCount(String word, int count) {
+	public WordCount(String word ) {
 		this.count = 1;
-		this.word = "1";
+		this.word = word;
 	}
 
 	/**
