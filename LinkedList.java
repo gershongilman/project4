@@ -148,7 +148,7 @@ public class LinkedList<T> implements Iterable<T> {
 			last.setNext(input.getFirst());
 		}
 		// make input list empty
-		input.setFirst(null);
+		input = null;
 	}
 
 	public static void main(String args[]) {
