@@ -4,9 +4,23 @@ import java.util.Scanner;
 
 public class TextAnalyze {
 
-	public static WordCount radixSort(WordCount count) {
-		return count;
+	public static WordCount radixSort(LinkedList<WordCount> words) {
+		
+		//loop over all elements to find max length
+		int maxLength = 0;
+		LLNode<WordCount> node = words.getFirst();
+		while (node != null) {
+			node = node.getNext();
+			maxLength= ( node.getElement().getWord().length() < maxLength) ? node.getElement().getWord().length() : maxLength;
+		}
+		
+		// create array of 27 linked Lists
+		List<LinkedList<WordCount>> backets = new ArrayList<LinkedList<WordCount>>(27);
+		
+		
+	    return words;
 	}
+
 
 	
 	
