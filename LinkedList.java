@@ -128,7 +128,7 @@ public class LinkedList<T> implements Iterable<T> {
 	public Iterator<T> iterator() {
 		return new LinkedListIterator<T>(this.getFirst());
 	}
-	
+
 	public LLNode<T> getLast() {
 		LLNode<T> last = getFirst();
 		for (; last != null && last.getNext() != null; last = last.getNext()) {
@@ -138,6 +138,7 @@ public class LinkedList<T> implements Iterable<T> {
 
 	/**
 	 * combining two linked lists
+	 * 
 	 * @param input a Linked List that we want to connect to another list
 	 */
 	public void append(LinkedList<T> input) {
@@ -148,7 +149,27 @@ public class LinkedList<T> implements Iterable<T> {
 			last.setNext(input.getFirst());
 		}
 		// make input list empty
-		input = null;
+		input.setFirst(null);
+	}
+
+	public void reverse() {
+
+		LLNode<T> head = getFirst();
+		if (head == null || head.getNext() == null) {
+			;
+		}
+
+		LLNode<T> list_to_do = head.getNext();
+		LLNode<T> reversed = head;
+		reversed.setNext(null);
+
+		while (list_to_do != null) {
+			LLNode<T> temp = list_to_do;
+			list_to_do = list_to_do.getNext();
+
+			temp.setNext(reversed);
+			reversed = temp;
+		}
 	}
 
 	public static void main(String args[]) {

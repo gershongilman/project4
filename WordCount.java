@@ -4,9 +4,9 @@
  */
 public class WordCount {
 
-	private int count;
+	private int count = 1;
 
-	private String word;
+	private String word = "1";
 
 	/**
 	 * the Constructor
@@ -14,7 +14,7 @@ public class WordCount {
 	 * @param input the string that we will count
 	 * @param count the number of words
 	 */
-	public WordCount(String word ) {
+	public WordCount(String word) {
 		this.count = 1;
 		this.word = word;
 	}
@@ -49,5 +49,10 @@ public class WordCount {
 	 */
 	public void setWord(String input) {
 		this.word = input;
+	}
+	
+	@Override
+	public String toString() {
+		return "(" + getWord() + "," + getCount() + ")";
 	}
 }
