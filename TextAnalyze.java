@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * 
+ * @author gershon
+ *
+ */
 public class TextAnalyze {
 
 	/**
@@ -21,31 +26,49 @@ public class TextAnalyze {
 
 		// loops through from last letter to the first letter
 		for (int i = maxLength(words) - 1; i >= 0; i--) {
+
 			// put words in buckets with respect to letter #i
 			Iterator<WordCount> it = words.iterator();
+
 			while (it.hasNext()) {
-				// current word we are on
+				// current word we are on using iterator
 				WordCount current = it.next();
-				String str = current.getWord();
+
+				// storing the current word as string
+				String str = current.getWord().toLowerCase();
+
+				// initializing the buckets we will have for radix sort
 				int bucketNum = 0;
+
 				if (str.length() > i) {
 					bucketNum = str.charAt(i) - 'a' + 1;
 				}
-				buckets.get(bucketNum).addToEnd(current);
+
+				// increasing count if we have a word repetition
+				if (!buckets.get(bucketNum).isEmpty()
+						&& str == buckets.get(bucketNum).getFirst().getElement().getWord()) {
+					current.setCount(13);
+
+				} else {
+					buckets.get(bucketNum).addToFront(current);
+				}
+
 			}
 
 			// merge all lists back into one using append
 			words = new LinkedList<WordCount>();
 			for (int bucketNum = 0; bucketNum < 28; bucketNum++) {
 				LinkedList<WordCount> bucket = buckets.get(bucketNum);
+				bucket.reverse();
 				if (!bucket.isEmpty()) {
-					System.out.println(bucketNum);
-					LinkedList.printList2(bucket);
+					// System.out.println(bucketNum);
+
+					// LinkedList.printList2(bucket);
 					words.append(bucket);
 
 				}
 			}
-			LinkedList.printList2(words);
+			// LinkedList.printList2(words);
 
 		}
 
@@ -74,6 +97,29 @@ public class TextAnalyze {
 	}
 
 	public static LinkedList<WordCount> loadFile(String fileName) throws FileNotFoundException {
+//		File file = new File(fileName);
+//		BufferedReader br = null;
+//
+//		try {
+//
+//			br = new BufferedReader(new FileReader(fileName));
+//			LinkedList<WordCount> words = new LinkedList<>();
+//			String line = null;
+//			String[] lineWords;
+//			while (br.readLine() != null) {
+//				lineWords = line.split("\\s");
+//				for (String word : lineWords) {
+//					words.addToEnd(new WordCount(word));
+//				}
+//			}
+//			return words;
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//			throw new IOException(" File " + fileName + "cannot be read ");
+//		} finally {
+//			br.close();
+//		}
 		File file = new File(fileName);
 		Scanner sc = null;
 		try {

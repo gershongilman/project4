@@ -152,16 +152,13 @@ public class LinkedList<T> implements Iterable<T> {
 		input.setFirst(null);
 	}
 
+	/**
+	 * 
+	 */
 	public void reverse() {
 
-		LLNode<T> head = getFirst();
-		if (head == null || head.getNext() == null) {
-			;
-		}
-
-		LLNode<T> list_to_do = head.getNext();
-		LLNode<T> reversed = head;
-		reversed.setNext(null);
+		LLNode<T> reversed = null; // nothing is reversed yet!
+		LLNode<T> list_to_do = getFirst(); // still need to reverse everything :-)
 
 		while (list_to_do != null) {
 			LLNode<T> temp = list_to_do;
@@ -169,6 +166,7 @@ public class LinkedList<T> implements Iterable<T> {
 
 			temp.setNext(reversed);
 			reversed = temp;
+			setFirst(reversed);
 		}
 	}
 
@@ -179,10 +177,12 @@ public class LinkedList<T> implements Iterable<T> {
 			list.addToEnd(i);
 			list2.addToEnd(i + 5);
 		}
-		printList2(list);
-		printList2(list2);
-		list.append(list2);
-		printList2(list);
+//		printList2(list);
+//		printList2(list2);
+//		list.append(list2);
+//		printList2(list);
+//		printList2(list2);
+		list2.reverse();
 		printList2(list2);
 	}
 }
