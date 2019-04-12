@@ -34,21 +34,21 @@ public class TextAnalyze {
 				// current word we are on using iterator
 				WordCount current = it.next();
 
-				// storing the current word as string
+				// get the current word as a string
 				String str = current.getWord().toLowerCase();
 
-				// initializing the buckets we will have for radix sort
+				// what bucket should current word go to?
 				int bucketNum = 0;
-
 				if (str.length() > i) {
 					bucketNum = str.charAt(i) - 'a' + 1;
-				}
+				}				
+				LinkedList<WordCount> bucket = buckets.get(bucketNum);
 
-				// increasing count if we have a word repetition
-				if (!buckets.get(bucketNum).isEmpty()
-						&& str == buckets.get(bucketNum).getFirst().getElement().getWord()) {
-					current.setCount(13);
-
+				// Add 'current' word to the bucket. 
+				// If the first word in the bucket is the same, just by increase its count
+				WordCount firstWord = bucket.getFirst();   // can be null
+				if ((firstWord != null) && (str == firstWord.getWord()) {
+					firstWord.setCount(firstWord.getCount() + 1);
 				} else {
 					buckets.get(bucketNum).addToFront(current);
 				}
